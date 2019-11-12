@@ -2,6 +2,7 @@ from flask import Flask,request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.mysql import DOUBLE
 import requests
+import simplejson as json
 
 # initialize the flask app
 app = Flask(__name__)
@@ -52,11 +53,23 @@ def getting_transac(parametro):
 
 	#Another way with adding name parameter in route
 	transa_result=Transa.query.first()
-	return (jsonify({'client_id':transa_result.client_id,
+	json_data=jsonify({'client_id':transa_result.client_id,
 										'Longitud':str(transa_result.merchant_lon),
 										'Latitude':str(transa_result.merchant_lat),
-										'Parametro': parametro}))
-
+										'Parametro': parametro})
+	geojson_data=jsonify({
+    "type": "FeatureCollection",
+    "features": [
+    {
+        "type": "Feature",
+        "geometry" : {
+            "type": "Point",
+            "coordinates": [transa_result.merchant_lon, transa_result.merchant_lat]
+            },
+        "properties" : 'transa_result',
+     }]
+		})
+	return geojson_data
 
 if __name__ == '__main__':
 	app.run(debug=True)
