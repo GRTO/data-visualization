@@ -1,8 +1,11 @@
 from flask import Flask,request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.mysql import DOUBLE
+from sqlalchemy import Date, cast
+from datetime import date
 import requests
 import simplejson as json
+from sqlalchemy import select
 
 # initialize the flask app
 app = Flask(__name__)
@@ -46,17 +49,14 @@ class Transa(db.Model):
 def index():
 	return 'Hello World!'
 
-@app.route('/transacciones/<string:parametro>',methods=['GET'])
-def getting_transac(parametro):
+@app.route('/transactions/<start_date>/<end_date>',methods=['GET'])
+#style start_date: YYYY-MM-DD
+def getting_transactions(start_date,end_date):
 	#One way to get the info without adding name parameter in route,but fronend needs to send us with that name parameter
 	#data=request.args.get('parametro') 
 
 	#Another way with adding name parameter in route
-	transa_result=Transa.query.first()
-	json_data=jsonify({'client_id':transa_result.client_id,
-										'Longitud':str(transa_result.merchant_lon),
-										'Latitude':str(transa_result.merchant_lat),
-										'Parametro': parametro})
+	result=Transa.query.filter( cast(Transa.date,Date).between(start_date,end_date)).all()
 	geojson_data=jsonify({
     "type": "FeatureCollection",
     "features": [
@@ -64,11 +64,12 @@ def getting_transac(parametro):
         "type": "Feature",
         "geometry" : {
             "type": "Point",
-            "coordinates": [transa_result.merchant_lon, transa_result.merchant_lat]
+            "coordinates": [row.merchant_lon,row.merchant_lat]
             },
-        "properties" : 'transa_result',
-     }]
+        "properties" : row.client_id,
+     }for row in result]
 		})
+	
 	return geojson_data
 
 if __name__ == '__main__':
