@@ -1,7 +1,7 @@
 from flask import Flask,request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.mysql import DOUBLE
-from sqlalchemy import Date, cast
+from sqlalchemy import Date, cast,and_
 from datetime import date
 import requests
 import simplejson as json
@@ -49,14 +49,17 @@ class Transa(db.Model):
 def index():
 	return 'Hello World!'
 
-@app.route('/transactions/<start_date>/<end_date>',methods=['GET'])
+@app.route('/transactions/<start_date>/<end_date>/<merchant_types>',methods=['GET'])
 #style start_date: YYYY-MM-DD
-def getting_transactions(start_date,end_date):
+def getting_transactions(start_date,end_date,merchant_types):
 	#One way to get the info without adding name parameter in route,but fronend needs to send us with that name parameter
 	#data=request.args.get('parametro') 
 
 	#Another way with adding name parameter in route
-	result=Transa.query.filter( cast(Transa.date,Date).between(start_date,end_date)).all()
+	result=Transa.query.filter(
+		cast(Transa.date,Date).between(start_date,end_date),
+		Transa.merchant_type==merchant_types
+		).all()
 	geojson_data=jsonify({
     "type": "FeatureCollection",
     "features": [
