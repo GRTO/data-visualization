@@ -1,11 +1,10 @@
 from flask import Flask,request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.mysql import DOUBLE
-from sqlalchemy import Date, cast,and_
+from sqlalchemy import Date, cast,and_,select,text
 from datetime import date
 import requests
 import simplejson as json
-from sqlalchemy import select
 
 # initialize the flask app
 app = Flask(__name__)
@@ -74,6 +73,43 @@ def getting_transactions(start_date,end_date,merchant_types):
 		})
 	
 	return geojson_data
+@app.route('/home')
+def showingData():
+	#Function which has to be called at beginning to get data to show in every combobox
+	
+	#Check if we need to show ID's merchant_type as well 
+	merchant_type_sql=text('select DISTINCT merchant_type from transa')
+	merchant_types_result=db.engine.execute(merchant_type_sql)
+	merchant_types=[row[0] for row in merchant_types_result]
+	merchant_types.insert(0,'Todo')
+
+	#Check if we need to consult DB coz it just 2 different values
+	#We can hardcode it like macro_option right here or frontend 
+	debit_type_sql=text('select distinct debit_type from transa')
+	debit_type_result=db.engine.execute(debit_type_sql)
+	debit_type=[row[0] for row in debit_type_result]
+	
+	return jsonify({
+		'results':{
+			'merchant_types':merchant_types,
+			'debit_type':debit_type,
+			'macro_option':['Cantidad de transacciones','Monto consumido'],
+			'gender':['Masculino','Femenino']
+			}
+		})
+
+@app.route('/consult/<merchant_type>',methods=['GET'])
+def consultMacro(merchant_type):
+	merchant_type=merchant_type.replace('"',"'")
+	base_sql_consult='select * from transa'
+	merchant_type_sql_filter=f'where merchant_type={merchant_type}'
+	if merchant_type:
+		merchant_type_sql=text(f'{base_sql_consult} {merchant_type_sql_filter}')
+	
+	merchant_type_result=db.engine.execute(merchant_type_sql)
+	merchant_type=[row[3] for row in merchant_type_result]
+	return jsonify({'result':merchant_type})
+
 
 if __name__ == '__main__':
 	app.run(debug=True)
