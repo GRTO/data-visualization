@@ -12,7 +12,7 @@ app = Flask(__name__)
 #Configuration for database,we're gonna use SQLAlchemy as ORM 
 #Database given in class(earthquake.csv)
 # URI FORMAT ----> postgresql://<user_name>:<password>@<host>:<port>/<database_name>
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:123456@localhost:5432/transacciones'
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://pucp_user:123456@52.202.253.46:5432/transacciones_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)	
 
