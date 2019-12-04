@@ -1,0 +1,442 @@
+[
+    {
+        "id": "Todo",
+        "description": "Todo"
+    },
+    {
+        "id": "Servicios Escolares y Educativos No Clasificados.",
+        "description": "Servicios Escolares y Educativos No Clasificados."
+    },
+    {
+        "id": "Venta y reparacion de bicicletas",
+        "description": "Venta y reparacion de bicicletas"
+    },
+    {
+        "id": "Licorerias y botillerias",
+        "description": "Licorerias y botillerias"
+    },
+    {
+        "id": "Tiendas de articulos diversos",
+        "description": "Tiendas de articulos diversos"
+    },
+    {
+        "id": "Servicios profesionales",
+        "description": "Servicios profesionales"
+    },
+    {
+        "id": "Mayoristas de productos metalicos",
+        "description": "Mayoristas de productos metalicos"
+    },
+    {
+        "id": "Baños turcos y centros de estetica",
+        "description": "Baños turcos y centros de estetica"
+    },
+    {
+        "id": "Materiales y Acabados de Construccion",
+        "description": "Materiales y Acabados de Construccion"
+    },
+    {
+        "id": "Joyerias, relojerias y platerias",
+        "description": "Joyerias, relojerias y platerias"
+    },
+    {
+        "id": "Venta de seguros y reaseguros",
+        "description": "Venta de seguros y reaseguros"
+    },
+    {
+        "id": "Clinicas y centros medicos",
+        "description": "Clinicas y centros medicos"
+    },
+    {
+        "id": "Venta de autos y camiones, nuevos y usados",
+        "description": "Venta de autos y camiones, nuevos y usados"
+    },
+    {
+        "id": "Venta de cosmeticos",
+        "description": "Venta de cosmeticos"
+    },
+    {
+        "id": "Venta de tapices, cortinas y persianas",
+        "description": "Venta de tapices, cortinas y persianas"
+    },
+    {
+        "id": "Clinicas y centros medicos",
+        "description": "Clinicas y centros medicos"
+    },
+    {
+        "id": "Funerarias y crematorios",
+        "description": "Funerarias y crematorios"
+    },
+    {
+        "id": "Venta de autos y camiones, nuevos y usados",
+        "description": "Venta de autos y camiones, nuevos y usados"
+    },
+    {
+        "id": "Venta de cosmeticos",
+        "description": "Venta de cosmeticos"
+    },
+    {
+        "id": "Venta de tapices, cortinas y persianas",
+        "description": "Venta de tapices, cortinas y persianas"
+    },
+    {
+        "id": "Oculistas y contactologos",
+        "description": "Oculistas y contactologos"
+    },
+    {
+        "id": "Agencias de Viajes",
+        "description": "Agencias de Viajes"
+    },
+    {
+        "id": "Carpinteria",
+        "description": "Carpinteria"
+    },
+    {
+        "id": "Venta por catalogo",
+        "description": "Venta por catalogo"
+    },
+    {
+        "id": "Hoteles",
+        "description": "Hoteles"
+    },
+    {
+        "id": "Restaurants",
+        "description": "Restaurants"
+    },
+    {
+        "id": "MARKETING DIRECTO SALIENTE",
+        "description": "MARKETING DIRECTO SALIENTE"
+    },
+    {
+        "id": "Venta de repuestos para vehiculos",
+        "description": "Venta de repuestos para vehiculos"
+    },
+    {
+        "id": "Discotecas, peñas, bares y pubs",
+        "description": "Discotecas, peñas, bares y pubs"
+    },
+    {
+        "id": "Librerias, imprentas y editoriales",
+        "description": "Librerias, imprentas y editoriales"
+    },
+    {
+        "id": "Servicios Medicos",
+        "description": "Servicios Medicos"
+    },
+    {
+        "id": "EQUIPOS Y ACCESORIOS DE LAB. MEDICOS",
+        "description": "EQUIPOS Y ACCESORIOS DE LAB. MEDICOS"
+    },
+    {
+        "id": "Pago de cuotas a clubes",
+        "description": "Pago de cuotas a clubes"
+    },
+    {
+        "id": "Lavado de vehiculos",
+        "description": "Lavado de vehiculos"
+    },
+    {
+        "id": "Lavanderias",
+        "description": "Lavanderias"
+    },
+    {
+        "id": "VENTA GAS (BALONES), CARBÓN, OTROS COMBUSTIBLES",
+        "description": "VENTA GAS (BALONES), CARBÓN, OTROS COMBUSTIBLES"
+    },
+    {
+        "id": "Tiendas de artesanias y souveniers",
+        "description": "Tiendas de artesanias y souveniers"
+    },
+    {
+        "id": "Tiendas de juguetes y juegos",
+        "description": "Tiendas de juguetes y juegos"
+    },
+    {
+        "id": "scuelas de arte y oficios",
+        "description": "scuelas de arte y oficios"
+    },
+    {
+        "id": "Venta y servicio de protesis auditiva",
+        "description": "Venta y servicio de protesis auditiva"
+    },
+    {
+        "id": "Tiendas de equipos deportivos",
+        "description": "Tiendas de equipos deportivos"
+    },
+    {
+        "id": "Servicios legales y abogados",
+        "description": "Servicios legales y abogados"
+    },
+    {
+        "id": "Asociaciones automovilisticas",
+        "description": "Asociaciones automovilisticas"
+    },
+    {
+        "id": "Salones de masajes",
+        "description": "Salones de masajes"
+    },
+    {
+        "id": "Campos deportivos y de recreacion",
+        "description": "Campos deportivos y de recreacion"
+    },
+    {
+        "id": "Contratistas generales de edif. res. y comerc.",
+        "description": "Contratistas generales de edif. res. y comerc."
+    },
+    {
+        "id": "Farmacias, droguerias y perfumerias",
+        "description": "Farmacias, droguerias y perfumerias"
+    },
+    {
+        "id": "Cafeterias, snacks, servicio express",
+        "description": "Cafeterias, snacks, servicio express"
+    },
+    {
+        "id": "Talleres de reparacion general para vehiculos",
+        "description": "Talleres de reparacion general para vehiculos"
+    },
+    {
+        "id": "Alquiler equipo y mobiliario domestico o indust.",
+        "description": "Alquiler equipo y mobiliario domestico o indust."
+    },
+    {
+        "id": "Tiendas Electrodomesticos y Aparatos Para el Hogar",
+        "description": "Tiendas Electrodomesticos y Aparatos Para el Hogar"
+    },
+    {
+        "id": "Tienda de ropa para niños y bebes",
+        "description": "Tienda de ropa para niños y bebes"
+    },
+    {
+        "id": "Servicio de consultoria administrativa y relaci.",
+        "description": "Servicio de consultoria administrativa y relaci."
+    },
+    {
+        "id": "Contratistas en Instalaciones en General",
+        "description": "Contratistas en Instalaciones en General"
+    },
+    {
+        "id": "Quiropracticos y servicios de rehabilitacion",
+        "description": "Quiropracticos y servicios de rehabilitacion"
+    },
+    {
+        "id": "Sastres, modistas",
+        "description": "Sastres, modistas"
+    },
+    {
+        "id": "Supermercados, Minimercados",
+        "description": "Supermercados, Minimercados"
+    },
+    {
+        "id": "Tienda de ropa para toda la familia",
+        "description": "Tienda de ropa para toda la familia"
+    },
+    {
+        "id": "Parque de diversiones",
+        "description": "Parque de diversiones"
+    },
+    {
+        "id": "Servicio de alquiler de ropa",
+        "description": "Servicio de alquiler de ropa"
+    },
+    {
+        "id": "Estudios fotograficos",
+        "description": "Estudios fotograficos"
+    },
+    {
+        "id": "Confiterias y dulcerias",
+        "description": "Confiterias y dulcerias"
+    },
+    {
+        "id": "SERVICIOS DE ELECTRICIDAD, GAS, AGUA Y SANITARIOS",
+        "description": "SERVICIOS DE ELECTRICIDAD, GAS, AGUA Y SANITARIOS"
+    },
+    {
+        "id": "Laboratorios medicos y dentales",
+        "description": "Laboratorios medicos y dentales"
+    },
+    {
+        "id": "Casa de empeño",
+        "description": "Casa de empeño"
+    },
+    {
+        "id": "Casinos y juegos de azar",
+        "description": "Casinos y juegos de azar"
+    },
+    {
+        "id": "Bazares y tiendas de regalos",
+        "description": "Bazares y tiendas de regalos"
+    },
+    {
+        "id": "Tiendas de decoracion en general",
+        "description": "Tiendas de decoracion en general"
+    },
+    {
+        "id": "Tiendas de ventas especializadas al menudeo",
+        "description": "Tiendas de ventas especializadas al menudeo"
+    },
+    {
+        "id": "Boutique de ropa para mujeres",
+        "description": "Boutique de ropa para mujeres"
+    },
+    {
+        "id": "Actividades comerciales no clasificadas",
+        "description": "Actividades comerciales no clasificadas"
+    },
+    {
+        "id": "Venta de motocicletas",
+        "description": "Venta de motocicletas"
+    },
+    {
+        "id": "Medicos en general",
+        "description": "Medicos en general"
+    },
+    {
+        "id": "Venta y servicio de llantas",
+        "description": "Venta y servicio de llantas"
+    },
+    {
+        "id": "Tiendas de cigarros, tabaquerias",
+        "description": "Tiendas de cigarros, tabaquerias"
+    },
+    {
+        "id": "Escuelas de baile",
+        "description": "Escuelas de baile"
+    },
+    {
+        "id": "Agencia de publicidad",
+        "description": "Agencia de publicidad"
+    },
+    {
+        "id": "TIENDAS DE ROPA",
+        "description": "TIENDAS DE ROPA"
+    },
+    {
+        "id": "Tienda de ropa deportiva",
+        "description": "Tienda de ropa deportiva"
+    },
+    {
+        "id": "Agencia de detectives y servicio de proteccion",
+        "description": "Agencia de detectives y servicio de proteccion"
+    },
+    {
+        "id": "Boutique de ropa para hombres",
+        "description": "Boutique de ropa para hombres"
+    },
+    {
+        "id": "Computadoras, equipos perif. de comp., software",
+        "description": "Computadoras, equipos perif. de comp., software"
+    },
+    {
+        "id": "Organizaciones sin fines de lucro",
+        "description": "Organizaciones sin fines de lucro"
+    },
+    {
+        "id": "Alquiler de automoviles",
+        "description": "Alquiler de automoviles"
+    },
+    {
+        "id": "Heladerias y productos lacteos",
+        "description": "Heladerias y productos lacteos"
+    },
+    {
+        "id": "Proveederos para fiestas y banquetes",
+        "description": "Proveederos para fiestas y banquetes"
+    },
+    {
+        "id": "Salas de juego de video, pinball",
+        "description": "Salas de juego de video, pinball"
+    },
+    {
+        "id": "Zapaterias",
+        "description": "Zapaterias"
+    },
+    {
+        "id": "Grifos, servicio",
+        "description": "Grifos, servicio"
+    },
+    {
+        "id": "Tiendas por departamentos",
+        "description": "Tiendas por departamentos"
+    },
+    {
+        "id": "Zapaterias",
+        "description": "Zapaterias"
+    },
+    {
+        "id": "Servicio de Currier",
+        "description": "Servicio de Currier"
+    },
+    {
+        "id": "quipos de Telecomunicaciones",
+        "description": "quipos de Telecomunicaciones"
+    },
+    {
+        "id": "Peluquerias",
+        "description": "Peluquerias"
+    },
+    {
+        "id": "Ferreterias",
+        "description": "Ferreterias"
+    },
+    {
+        "id": "Tiendas de articulos musicales",
+        "description": "Tiendas de articulos musicales"
+    },
+    {
+        "id": "Pedicuristas y podologos",
+        "description": "Pedicuristas y podologos"
+    },
+    {
+        "id": "Pago de Impuestos",
+        "description": "Pago de Impuestos"
+    },
+    {
+        "id": "Panaderias y pastelerias",
+        "description": "Panaderias y pastelerias"
+    },
+    {
+        "id": "Venta de Pinturas, Empapelados,Vidrierias y Esp.",
+        "description": "Venta de Pinturas, Empapelados,Vidrierias y Esp."
+    },
+    {
+        "id": "Lenceria y ropa interior",
+        "description": "Lenceria y ropa interior"
+    },
+    {
+        "id": "Colegios y nidos",
+        "description": "Colegios y nidos"
+    },
+    {
+        "id": "Servicios de Telecomunicaciones",
+        "description": "Servicios de Telecomunicaciones"
+    },
+    {
+        "id": "Tiendas mayoristas",
+        "description": "Tiendas mayoristas"
+    },
+    {
+        "id": "Opticos",
+        "description": "Opticos"
+    },
+    {
+        "id": "Tiendas de mascotas, incluye accesorios",
+        "description": "Tiendas de mascotas, incluye accesorios"
+    },
+    {
+        "id": "Dentistas, ortodoncistas",
+        "description": "Dentistas, ortodoncistas"
+    },
+    {
+        "id": "Mueblerias",
+        "description": "Mueblerias"
+    },
+    {
+        "id": "Electrodomesticos y equipos de sonido",
+        "description": "Electrodomesticos y equipos de sonido"
+    },
+    {
+        "id": "Bodegas y pastas",
+        "description": "Bodegas y pastas"
+    }
+]

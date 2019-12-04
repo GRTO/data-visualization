@@ -2,15 +2,18 @@ import { Component } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import * as L from "leaflet";
 import jsonObject from "src/assets/departements.json";
+import jsonLince from "src/assets/lince.json";
+import jsonSJL from "src/assets/sjl.json";
+import jsonMerchantType from "src/assets/merchantType.json";
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith, tap, switchMap } from 'rxjs/operators';
 import { ConfigLeaflet } from 'src/app/shared/config/config';
-import { FeatureCollection } from 'geojson';
+import { FeatureCollection, MultiPolygon } from 'geojson';
 import { FilterService } from 'src/app/shared/services/filter.service';
 
 interface IOption {
-  id: number;
+  id: string;
   description: string;
 }
 
@@ -20,6 +23,17 @@ interface IOption {
 })
 
 export class MapComponent {
+  // Polygons
+  lincePolygon = L.geoJSON(<MultiPolygon> jsonLince).setTooltipContent('Lince');
+  sjlPolygon = L.geoJSON(<MultiPolygon> jsonSJL).setStyle({color: 'green'});
+  centerSJL = L.marker([-11.9819111,-76.9963552]).bindTooltip('San Juan de Lurigancho', {direction: 'right'});
+  centerLince = L.marker([-12.0839797,-77.036239]).bindTooltip('Lince', {direction: 'right'});
+
+  objLincePolygon;
+  objSJLPolygon;
+  objCenterSJL;
+  objCenterLince;
+  // --------
   FORM_FIELD = {};
   // List options
   optionList$: Observable<IOption[]>;
@@ -28,7 +42,7 @@ export class MapComponent {
 
   form: FormGroup;
 
-  optionList = [{ id: 1, description: 'Field 1' }, { id: 2, description: 'Analista 2' }];
+  optionList = jsonMerchantType;
 
   map: L.Map;
   json;
@@ -46,6 +60,8 @@ export class MapComponent {
       amount: [null],
       male: [null],
       female: [null],
+      startDate: [null],
+      endDate: [null],
     }
     this.form = this.fb.group(this.FORM_FIELD);
 
@@ -57,56 +73,26 @@ export class MapComponent {
       );
     // Call backend
     const formChanges$ = this.form.valueChanges.pipe(
-      switchMap(form => filterService.GetFilters(form))
+      switchMap(form => filterService.GetFilters(form)),
+      tap(({ result }) => {
+        this.lincePolygon.bindTooltip(`La cantidad en lince fue de ${result.Lince[0] !== null ? result.Lince[0] : 0}`).addTo(this.map);
+        this.sjlPolygon.bindTooltip(`La cantidad en SJL fue de ${result.SJL[0] !== null ? result.SJL[0] : 0}`).addTo(this.map);
+      }),
     );
-    formChanges$.subscribe(); // Fixme: Adding to map values
+    formChanges$.subscribe();
   }
 
   private _filterInput(value: string): IOption[] {
     const filterValue = value.toLowerCase();
-    const mapJ = {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Polygon",
-            "coordinates": [
-              [
-                [
-                  -78.046875,
-                  -5.7908968128719565
-                ],
-                [
-                  -75.849609375,
-                  -9.622414142924805
-                ],
-                [
-                  -74.267578125,
-                  -5.00339434502215
-                ],
-                [
-                  -77.607421875,
-                  -5.878332109674314
-                ],
-                [
-                  -78.046875,
-                  -5.7908968128719565
-                ]
-              ]
-            ]
-          }
-        }
-      ]
-    }
-    L.geoJSON(<FeatureCollection>mapJ).addTo(this.map);
     return this.optionList.filter(option => option.description.toLowerCase().indexOf(filterValue) === 0);
   }
 
   onMapReady(map: L.Map) {
     this.json = jsonObject;
-    L.geoJSON(this.json).addTo(map);
+    this.objLincePolygon = this.lincePolygon.addTo(map);
+    this.objSJLPolygon = this.sjlPolygon.addTo(map);
+    this.objCenterSJL = this.centerSJL.addTo(map);
+    this.objCenterLince = this.centerLince.addTo(map);
     this.map = map;
   }
 

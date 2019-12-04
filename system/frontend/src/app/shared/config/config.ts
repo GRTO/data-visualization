@@ -6,12 +6,12 @@ export class ConfigLeaflet {
     private options = {
         layers: [
             L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                maxZoom: 18,
+                minZoom: 11,
                 attribution: ""
             })
         ],
         zoom: 7,
-        center: L.latLng(-9.1899672, -75.015152)
+        center: L.latLng(-12.046374, -77.042793)
     };
 
     constructor() {

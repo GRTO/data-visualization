@@ -25,27 +25,39 @@ export class FilterService {
         })
     }
 
-    parseBody({ formCtrl, amount, credit, debit, female, male, transactions }) {
+    parseBody({ formCtrl, amount, credit, debit, female, male, transactions, startDate, endDate }) {
         const arrSolution = [];
         // merchant type
         if (formCtrl === null) {
             arrSolution.push('all');
         } else {
-            arrSolution.push(formCtrl);
+            arrSolution.push(`'${formCtrl}'`);
         }
 
         // card type
         if ((credit === null && debit === null) || (credit && debit)) {
             arrSolution.push('all');
         } else {
-            arrSolution.push(credit !== null ? 'Crédito' : 'Débito');
+            if(credit !== null && credit) {
+                arrSolution.push(`'TC'`);
+            } else if(debit !== null && debit) {
+                arrSolution.push(`'TD'`);
+            } else {
+                arrSolution.push('all');
+            }
         }
 
         // Gender
         if ((female === null && male === null) || (female && male)) {
             arrSolution.push('all');
         } else {
-            arrSolution.push(male !== null ? 'M' : 'F');
+            if(male !== null && male) {
+                arrSolution.push(`'M'`);
+            } else if(female !== null && female) {
+                arrSolution.push(`'F'`);
+            } else {
+                arrSolution.push('all');
+            }
         }
 
         // vista
@@ -57,14 +69,26 @@ export class FilterService {
             arrSolution.push('Montos');
         }
 
+        if(startDate === null) {
+            arrSolution.push('all');
+        } else {
+            arrSolution.push(startDate);
+        }
+
+        if(endDate === null) {
+            arrSolution.push('all');
+        } else {
+            arrSolution.push(endDate);
+        }
+
         return arrSolution.join('/');
     }
 
     // GET
-    GetFilters(data): Observable<IFilters> {
+    GetFilters(data): Observable<any> {
         console.log('DATA');
         console.log('Here', this.parseBody(data));
-        return this.http.get<IFilters>(this.baseurl + '/consult/' + this.parseBody(data))
+        return this.http.get<any>(this.baseurl + '/consult/' + this.parseBody(data))
             .pipe(
                 retry(1),
                 catchError(this.errorHandl)
