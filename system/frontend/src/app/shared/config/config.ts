@@ -11,7 +11,7 @@ export class ConfigLeaflet {
             })
         ],
         zoom: 7,
-        center: L.latLng(70.482019, -1)
+        center: L.latLng(-9.1899672, -75.015152)
     };
 
     constructor() {

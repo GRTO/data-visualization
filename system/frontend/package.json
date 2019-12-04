@@ -24,7 +24,9 @@
     "@asymmetrik/ngx-leaflet": "^6.0.1",
     "@ngrx/store": "^8.5.2",
     "@ngrx/store-devtools": "^8.5.2",
+    "bootstrap": "4.1.1",
     "leaflet": "^1.5.1",
+    "ngx-bootstrap": "^5.2.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
