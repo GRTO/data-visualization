@@ -1,8 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<form class="example-form">
+<form class="example-form" [formGroup]="form">
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Tipo de negocio" aria-label="Tipo" [matAutocomplete]="auto"
-            [formControl]="formCtrl">
+            formControlName="formCtrl">
         <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of optionList$ | async" [value]="option.description">
                 <span>{{option.description}}</span>
@@ -13,18 +13,18 @@
     <div class="row">
         <div class="col-sm d-flex flex-column">
             <label>Tarjeta</label>
-            <mat-checkbox [(ngModel)]="checked">Crédito</mat-checkbox>
-            <mat-checkbox [(ngModel)]="indeterminate">Débito</mat-checkbox>
+            <mat-checkbox formControlName="credit">Crédito</mat-checkbox>
+            <mat-checkbox formControlName="debit">Débito</mat-checkbox>
         </div>
         <div class="col-sm d-flex flex-column">
             <label>Vista</label>
-            <mat-checkbox [(ngModel)]="checked">Transacciones</mat-checkbox>
-            <mat-checkbox [(ngModel)]="indeterminate">Montos</mat-checkbox>
+            <mat-checkbox formControlName="transactions">Transacciones</mat-checkbox>
+            <mat-checkbox formControlName="amount">Montos</mat-checkbox>
         </div>
         <div class="col-sm d-flex flex-column">
             <label>Género</label>
-            <mat-checkbox [(ngModel)]="checked">Masculino</mat-checkbox>
-            <mat-checkbox [(ngModel)]="indeterminate">Femenino</mat-checkbox>
+            <mat-checkbox formControlName="male">Masculino</mat-checkbox>
+            <mat-checkbox formControlName="female">Femenino</mat-checkbox>
         </div>
     </div>
 </form>
