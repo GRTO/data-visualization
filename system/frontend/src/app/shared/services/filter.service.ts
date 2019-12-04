@@ -72,23 +72,61 @@ export class FilterService {
         if(startDate === null) {
             arrSolution.push('all');
         } else {
-            arrSolution.push(startDate);
+            arrSolution.push(`'${startDate}'`);
         }
 
         if(endDate === null) {
             arrSolution.push('all');
         } else {
-            arrSolution.push(endDate);
+            arrSolution.push(`'${endDate}'`);
         }
 
         return arrSolution.join('/');
     }
 
+    parseMicroBody({type_consult, formCtrl, startDate, endDate}) {
+        const arrSolution = [];
+        // type consult
+        if(type_consult === 0 || type_consult === null) {
+            arrSolution.push('all');
+        } else {
+            arrSolution.push(type_consult);
+        }
+
+        // merchant type
+        if (formCtrl === null) {
+            arrSolution.push('all');
+        } else {
+            arrSolution.push(`'${formCtrl}'`);
+        }
+
+        if(startDate === null) {
+            arrSolution.push(`'2010-01-01'`);
+        } else {
+            arrSolution.push(`'${startDate}'`);
+        }
+
+        if(endDate === null) {
+            arrSolution.push('all');
+        } else {
+            arrSolution.push(`'${endDate}'`);
+        }
+        return arrSolution.join('/');
+    }
+
     // GET
     GetFilters(data): Observable<any> {
-        console.log('DATA');
-        console.log('Here', this.parseBody(data));
         return this.http.get<any>(this.baseurl + '/consult/' + this.parseBody(data))
+            .pipe(
+                retry(1),
+                catchError(this.errorHandl)
+            )
+    }
+
+    GetMicroFilters(data): Observable<any> {
+        console.log('DATA', data);
+        console.log('Here', this.parseMicroBody(data));
+        return this.http.get<any>(this.baseurl + '/consult_micro/' + this.parseMicroBody(data))
             .pipe(
                 retry(1),
                 catchError(this.errorHandl)

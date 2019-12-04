@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatSelectModule } from '@angular/material';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { ConfigLeaflet } from 'src/app/shared/config/config';
+import { Ng5SliderModule } from 'ng5-slider';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { ConfigLeaflet } from 'src/app/shared/config/config';
         MatCheckboxModule,
         MatSelectModule,
         SharedModule,
+        Ng5SliderModule,
     ],
     declarations: [MapComponent],
     providers: [

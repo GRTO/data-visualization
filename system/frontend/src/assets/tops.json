@@ -1,0 +1,22 @@
+[
+    {
+        "id": 0,
+        "description": "Sin filtros"
+    },
+    {
+        "id": 1,
+        "description": "Top de los 10 locales con mas ventas"
+    },
+    {
+        "id": 2,
+        "description": "Top de los 10 locales con menos ventas"
+    },
+    {
+        "id": 3,
+        "description": "Top de los 10 locales con mas monto"
+    },
+    {
+        "id": 4,
+        "description": "Top de los 10 locales con menos monto"
+    }
+]
