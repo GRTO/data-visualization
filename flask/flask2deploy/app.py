@@ -12,7 +12,8 @@ app = Flask(__name__)
 #Configuration for database,we're gonna use SQLAlchemy as ORM 
 #Database given in class(earthquake.csv)
 # URI FORMAT ----> postgresql://<user_name>:<password>@<host>:<port>/<database_name>
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://pucp_user:123456@52.202.253.46:5432/transacciones_db'
+#app.config['SQLALCHEMY_DATABASE_URI']='postgresql://pucp_user:123456@52.202.253.46:5432/transacciones_db'
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:123456@localhost:5432/transacciones'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)	
 
@@ -98,8 +99,8 @@ def showingData():
 			}
 		})
 
-@app.route('/consult/<merchant_type>/<card_type>/<gender>/<vista>',methods=['GET'])
-def consultMacro(merchant_type,card_type,gender,vista):	
+@app.route('/consult/<merchant_type>/<card_type>/<gender>/<vista>/<start_date>/<end_date>',methods=['GET'])
+def consultMacro(merchant_type,card_type,gender,vista,start_date,end_date):	
 	resultados={}
 	merchant_type=merchant_type.replace('"',"'")
 	vista_type='amount_sol' if vista=='Montos' else 'nb_transaction'
@@ -107,6 +108,8 @@ def consultMacro(merchant_type,card_type,gender,vista):
 	merchant_type_sql_filter=f' and merchant_type={merchant_type}'
 	card_type_sql_filter=f' and debit_type={card_type}'
 	gender_sql_filter=f' and client_gender={gender}'
+	date_start_sql_filter=f' and date >= {start_date}'
+	date_end_sql_filter=f' and date <= {end_date}'
 	distritos={'Lince':'150116','SJL':'150132'}#El primero es de Lince, el segundo es de san juan de lurigancho
 	if merchant_type != 'all':
 		base_sql_consult= base_sql_consult + merchant_type_sql_filter
@@ -114,6 +117,10 @@ def consultMacro(merchant_type,card_type,gender,vista):
 		base_sql_consult= base_sql_consult + card_type_sql_filter
 	if gender != 'all':
 		base_sql_consult= base_sql_consult + gender_sql_filter
+	if start_date != 'all':
+		base_sql_consult= base_sql_consult + date_start_sql_filter
+	if end_date != 'all':
+		base_sql_consult= base_sql_consult + date_end_sql_filter
 
 	for distrito in distritos:
 		new_query= base_sql_consult + f" and merchant_geoid='{distritos[distrito]}'"
