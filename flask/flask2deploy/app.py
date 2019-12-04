@@ -129,6 +129,52 @@ def consultMacro(merchant_type,card_type,gender,vista,start_date,end_date):
 
 	return jsonify({'result':{key:value for key,value in resultados.items()}})
 
+@app.route('/consult_micro/<int:type_consult>/<string:merchant_type>/<start_date>/<end_date>',methods=['GET'])
+def consultMicro(type_consult,merchant_type,start_date,end_date):
+	resultados=[]
+	filtro_top= 'DESC' if type_consult==1 or type_consult==3 else 'ASC'
+	filtro_type= 'amount_sol' if type_consult == 3 or type_consult ==4 else 'nb_transaction'
+	base_sql_consult=f"""select merchant_name,merchant_lon,merchant_lat,sum({filtro_type}) as suma
+											from transa
+											where merchant_type={merchant_type}"""
+	
+	date_start_sql_filter=f' and date >= {start_date}'
+	date_end_sql_filter=f' and date <= {end_date}'
+	last_sql=f"""group by merchant_name,merchant_lon,merchant_lat
+											order by suma {filtro_top} LIMIT 10"""										
+	if start_date != 'all':
+		base_sql_consult= base_sql_consult + date_start_sql_filter + last_sql
+	if end_date != 'all':
+		base_sql_consult= base_sql_consult + date_end_sql_filter + last_sql
+  
+	result=db.engine.execute(text(base_sql_consult))
+	#for row in result:
+		#resultado={}
+		#for column,value in row.items():
+			#resultado[column]=value
+		#resultados.append(resultado)
+
+	#return jsonify({'resultado': { 
+		#key:value for key,value in enumerate(resultados)}
+		#})
+
+	geojson_data=jsonify({
+    "type": "FeatureCollection",
+    "features": [
+    {
+        "type": "Feature",
+        "geometry" : {
+            "type": "Point",
+            "coordinates": [row.merchant_lon,row.merchant_lat]
+            },
+        "properties" : {
+        	'title': row.merchant_name,
+        	'value': row.suma
+        },
+     }for row in result]
+		})
+	return geojson_data
+
 
 if __name__ == '__main__':
 	app.run(debug=True)
