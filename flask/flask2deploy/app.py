@@ -136,16 +136,20 @@ def consultMicro(type_consult,merchant_type,start_date,end_date):
 	filtro_type= 'amount_sol' if type_consult == 3 or type_consult ==4 else 'nb_transaction'
 	base_sql_consult=f"""select merchant_name,merchant_lon,merchant_lat,sum({filtro_type}) as suma
 											from transa
-											where merchant_type={merchant_type}"""
-	
+											where 1=1"""
+	merchant_type_sql_filter=f' and merchant_type={merchant_type}'
+
 	date_start_sql_filter=f' and date >= {start_date}'
 	date_end_sql_filter=f' and date <= {end_date}'
-	last_sql=f"""group by merchant_name,merchant_lon,merchant_lat
-											order by suma {filtro_top} LIMIT 10"""										
+	last_sql=f""" group by merchant_name,merchant_lon,merchant_lat
+											order by suma {filtro_top} LIMIT 10"""	
+	if merchant_type != 'all':
+		base_sql_consult= base_sql_consult + merchant_type_sql_filter	
 	if start_date != 'all':
-		base_sql_consult= base_sql_consult + date_start_sql_filter + last_sql
+		base_sql_consult= base_sql_consult + date_start_sql_filter 
 	if end_date != 'all':
-		base_sql_consult= base_sql_consult + date_end_sql_filter + last_sql
+		base_sql_consult= base_sql_consult + date_end_sql_filter 
+	base_sql_consult= base_sql_consult + last_sql
   
 	result=db.engine.execute(text(base_sql_consult))
 	#for row in result:
