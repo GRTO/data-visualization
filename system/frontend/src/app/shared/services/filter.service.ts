@@ -124,8 +124,6 @@ export class FilterService {
     }
 
     GetMicroFilters(data): Observable<any> {
-        console.log('DATA', data);
-        console.log('Here', this.parseMicroBody(data));
         return this.http.get<any>(this.baseurl + '/consult_micro/' + this.parseMicroBody(data))
             .pipe(
                 retry(1),
@@ -143,7 +141,6 @@ export class FilterService {
             // Get server-side error
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
         }
-        console.log(errorMessage);
         return throwError(errorMessage);
     }
 

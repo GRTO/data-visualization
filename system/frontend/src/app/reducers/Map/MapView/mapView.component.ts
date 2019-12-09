@@ -8,7 +8,7 @@ import jsonTops from "src/assets/tops.json";
 import jsonMerchantType from "src/assets/merchantType.json";
 import { FormControl, FormGroup, FormBuilder } from "@angular/forms";
 import { Observable, from } from "rxjs";
-import { map, startWith, tap, switchMap } from "rxjs/operators";
+import { map, startWith, tap, switchMap, debounceTime } from "rxjs/operators";
 import { ConfigLeaflet } from "src/app/shared/config/config";
 import { FeatureCollection, MultiPolygon } from "geojson";
 import { FilterService } from "src/app/shared/services/filter.service";
@@ -60,6 +60,7 @@ export class MapComponent {
       }
     }
   };
+  lastLayer;
 
   objLincePolygon;
   objSJLPolygon;
@@ -121,6 +122,7 @@ export class MapComponent {
     this.optionTopList$ = from([this.optionTopsList]);
     // Call backend
     const formChanges$ = this.form.valueChanges.pipe(
+      debounceTime(300),
       switchMap(form => filterService.GetFilters(form)),
       tap(({ result }) => {
         this.lincePolygon
@@ -142,6 +144,7 @@ export class MapComponent {
     formChanges$.subscribe();
 
     const formMicroChanges$ = this.formMicro.valueChanges.pipe(
+      debounceTime(300),
       map(result => ({
           ...result,
           ...{
@@ -204,10 +207,20 @@ export class MapComponent {
             }
           ]
         }
-        L.geoJSON(<FeatureCollection>data).addTo(this.map);
+        if (this.lastLayer !== null && this.lastLayer) {
+          this.map.removeLayer(this.lastLayer);
+        }
+        this.lastLayer = L.geoJSON(<FeatureCollection>data, {
+          onEachFeature: (feature, layer) => {
+            layer.bindTooltip(`Descripción: ${feature.properties.title} \nValor: ${feature.properties.value}`)  //then add your options
+          }
+        }).addTo(this.map);
       })
     );
     formMicroChanges$.subscribe();
+
+    // Set first top select
+    this.type_consult.setValue(1);
   }
 
   private _filterInput(value: string): IOption[] {

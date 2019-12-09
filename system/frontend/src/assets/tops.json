@@ -1,9 +1,5 @@
 [
     {
-        "id": 0,
-        "description": "Sin filtros"
-    },
-    {
         "id": 1,
         "description": "Top de los 10 locales con mas ventas"
     },

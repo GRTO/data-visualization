@@ -1,57 +1,60 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<form class="example-form" [formGroup]="form">
-    <div class="row">
-        <div class="col-sm d-flex flex-column">
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Tipo de negocio" aria-label="Tipo" [matAutocomplete]="auto"
-                    formControlName="formCtrl">
-                <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of optionList$ | async" [value]="option.description">
-                        <span>{{option.description}}</span>
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
+<div style="padding: 0 20px;">
+    <form class="example-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-sm d-flex flex-column">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Tipo de negocio" aria-label="Tipo" [matAutocomplete]="auto"
+                        formControlName="formCtrl">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of optionList$ | async" [value]="option.description">
+                            <span>{{option.description}}</span>
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
         </div>
-    </div>
 
+        <div class="row">
+            <div class="col-sm d-flex flex-column">
+                <label>Tarjeta</label>
+                <mat-checkbox formControlName="credit">Crédito</mat-checkbox>
+                <mat-checkbox formControlName="debit">Débito</mat-checkbox>
+            </div>
+            <div class="col-sm d-flex flex-column">
+                <label>Vista</label>
+                <mat-checkbox formControlName="transactions">Transacciones</mat-checkbox>
+                <mat-checkbox formControlName="amount">Montos</mat-checkbox>
+            </div>
+            <div class="col-sm d-flex flex-column">
+                <label>Género</label>
+                <mat-checkbox formControlName="male">Masculino</mat-checkbox>
+                <mat-checkbox formControlName="female">Femenino</mat-checkbox>
+            </div>
+        </div>
+    </form>
+    <form class="example-form" [formGroup]="formMicro">
+        <div class="row">
+            <div class="col-sm d-flex flex-column">
+                <mat-form-field>
+                    <mat-label>Tops</mat-label>
+                    <mat-select matNativeControl required formControlName="type_consult">
+                        <mat-option *ngFor="let option of optionTopList$ | async" [value]="option.id">
+                            {{option.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
     <div class="row">
-        <div class="col-sm d-flex flex-column">
-            <label>Tarjeta</label>
-            <mat-checkbox formControlName="credit">Crédito</mat-checkbox>
-            <mat-checkbox formControlName="debit">Débito</mat-checkbox>
-        </div>
-        <div class="col-sm d-flex flex-column">
-            <label>Vista</label>
-            <mat-checkbox formControlName="transactions">Transacciones</mat-checkbox>
-            <mat-checkbox formControlName="amount">Montos</mat-checkbox>
-        </div>
-        <div class="col-sm d-flex flex-column">
-            <label>Género</label>
-            <mat-checkbox formControlName="male">Masculino</mat-checkbox>
-            <mat-checkbox formControlName="female">Femenino</mat-checkbox>
-        </div>
+        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="optionsSlider"
+            (userChange)="onChange($event)"></ng5-slider>
     </div>
-</form>
-<form class="example-form" [formGroup]="formMicro">
     <div class="row">
-        <div class="col-sm d-flex flex-column">
-            <mat-form-field>
-                <mat-label>Tops</mat-label>
-                <mat-select matNativeControl required formControlName="type_consult">
-                    <mat-option *ngFor="let option of optionTopList$ | async" [value]="option.id">
-                        {{option.description}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+        <div class="col-sm">
+            <div leaflet style="height: 800px" [leafletLayers]="layers" [leafletOptions]="options"
+                (leafletMapReady)="onMapReady($event)"></div>
         </div>
-    </div>
-</form>
-<div class="row">
-    <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="optionsSlider" (userChange)="onChange($event)"></ng5-slider>
-</div>
-<div class="row">
-    <div class="col-sm">
-        <div leaflet style="height: 800px" [leafletLayers]="layers" [leafletOptions]="options"
-            (leafletMapReady)="onMapReady($event)"></div>
     </div>
 </div>
