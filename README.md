@@ -65,6 +65,8 @@ Entrar con la línea de comandos a la ruta data-visualization\flask\flask2deploy
 
 Se debe instalar node.js, aqui esta la ruta de descarga https://nodejs.org/en/ y descargar la versión que es mas usada por los usuarios ya que es la mas estable.
 
+* Nota: Sin embargo, antes de correr el frontend deberá descargar alguna herramienta para desactivar CORS. En esta ocasión el código fue ejecutado en google chrome y se descargó la siguiente extensión https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en, alli solo se debe dar click en el icono C para poder desactivar los CORS.
+
 Luego desde terminal ingresar a la ruta:
 
     cd [PATH_TO_OUR_PROJECT]/system/frontend
